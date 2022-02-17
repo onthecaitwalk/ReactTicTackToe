@@ -96,9 +96,9 @@ import './index.css';
           );
       });
 
-      const status = (winner ? 
+      const status = winner ? 
         'Winner: ' + winner :
-        'Next player: ' + (this.state.xIsNext ? 'X' : 'O'));
+        'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
 
       return (
         <div className="game">
