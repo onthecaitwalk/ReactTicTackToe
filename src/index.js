@@ -1,18 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-
+  
   const Square = (props) => {    
     return (
-      <button
+        <button
         className='square'
         onClick={props.onClick}
-      >
+        >
         {props.value}
-      </button>
+        </button>
     );
-  }
-  
+  };
+
   const Board = (props) => {
     const renderSquare = (i) => {
       return (
@@ -21,7 +21,7 @@ import './index.css';
           onClick={() => props.onClick(i)}
         />
       );
-    }
+    };
 
     return (
       <div>
@@ -96,12 +96,9 @@ import './index.css';
           );
       });
 
-      let status;
-      if (winner) {
-        status = 'Winner: ' + winner;        
-      } else {
-        status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-      }
+      const status = (winner ? 
+        'Winner: ' + winner :
+        'Next player: ' + (this.state.xIsNext ? 'X' : 'O'));
 
       return (
         <div className="game">
