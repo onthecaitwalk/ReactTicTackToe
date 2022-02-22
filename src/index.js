@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
@@ -65,31 +65,34 @@ const Game = () => {
   const [stepNumber, setStepNumber] = useState(0);
   const [xIsNext, setXIsNext] = useState(true);
 
-  const jumpTo = (step) => {
+  const jumpTo = useCallback((step) => {
     setStepNumber(step);
     setXIsNext(step % 2 === 0);
-  };
+  }, []);
 
-  const handleClick = (i) => {
-    const hist = history.slice(0, stepNumber + 1);
-    const current = hist[hist.length - 1];
-    const squares = current.squares.slice();
+  const handleClick = useCallback(
+    (i) => {
+      const hist = history.slice(0, stepNumber + 1);
+      const current = hist[hist.length - 1];
+      const squares = current.squares.slice();
 
-    if (calculateWinner(squares) || squares[i]) {
-      return;
-    }
+      if (calculateWinner(squares) || squares[i]) {
+        return;
+      }
 
-    squares[i] = xIsNext ? "X" : "O";
-    setHistory(
-      hist.concat([
-        {
-          squares: squares,
-        },
-      ])
-    );
-    setStepNumber(hist.length);
-    setXIsNext(!xIsNext);
-  };
+      squares[i] = xIsNext ? "X" : "O";
+      setHistory(
+        hist.concat([
+          {
+            squares: squares,
+          },
+        ])
+      );
+      setStepNumber(hist.length);
+      setXIsNext(!xIsNext);
+    },
+    [history, stepNumber, xIsNext]
+  );
 
   const currentHist = history[stepNumber];
   const winner = calculateWinner(currentHist.squares);
