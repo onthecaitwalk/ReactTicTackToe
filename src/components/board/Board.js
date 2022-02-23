@@ -1,6 +1,6 @@
 import React from "react";
-import "./board.css";
-import { Square } from "../square/square";
+import "./Board.css";
+import { Square } from "../square/Square";
 
 export const Board = (props) => {
   const renderSquare = (i) => {

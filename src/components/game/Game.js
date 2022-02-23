@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
-import { Board } from "../board/board";
-import "./game.css";
+import { Board } from "../board/Board";
+import "./Game.css";
 
 const calculateWinner = (squares) => {
   const lines = [
