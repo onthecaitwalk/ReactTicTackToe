@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { Board } from "../board/Board";
+import Board from "../board/Board";
 import "./Game.css";
 
 const calculateWinner = (squares) => {
@@ -22,7 +22,7 @@ const calculateWinner = (squares) => {
   return null;
 };
 
-export const Game = () => {
+const Game = (props) => {
   const [history, setHistory] = useState([
     {
       squares: Array(9).fill(null),
@@ -87,3 +87,5 @@ export const Game = () => {
     </div>
   );
 };
+
+export default Game;

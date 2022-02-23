@@ -1,8 +1,8 @@
 import React from "react";
 import "./Board.css";
-import { Square } from "../square/Square";
+import Square from "../square/Square";
 
-export const Board = (props) => {
+const Board = (props) => {
   const renderSquare = (i) => {
     return <Square value={props.squares[i]} onClick={() => props.onClick(i)} />;
   };
@@ -27,3 +27,5 @@ export const Board = (props) => {
     </div>
   );
 };
+
+export default Board;
