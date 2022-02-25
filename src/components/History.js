@@ -5,8 +5,6 @@ import { useToggle } from "../hooks/toggle";
 const History = (props) => {
   const [isAscending, setIsAscending] = useToggle(true);
   const moves = props.moves.slice();
-
-  console.log(props.moves);
   return (
     <Stack spacing={0.5} direction="column">
       <InputLabel>{props.status}</InputLabel>

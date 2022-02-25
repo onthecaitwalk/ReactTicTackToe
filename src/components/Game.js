@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
 import Board from "./Board";
 import History from "./History";
-import { Paper, Button, Stack } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 import { calculateWinner } from "../calculateWinner";
 
 const Game = () => {
@@ -65,12 +65,10 @@ const Game = () => {
     : "Next player: " + (xIsNext ? "X" : "O");
 
   return (
-    <Paper>
-      <Stack spacing={2} direction="row">
-        <Board squares={currentHist.squares} onClick={(i) => handleClick(i)} />
-        <History status={status} moves={moves}></History>
-      </Stack>
-    </Paper>
+    <Stack spacing={2} direction="row">
+      <Board squares={currentHist.squares} onClick={(i) => handleClick(i)} />
+      <History status={status} moves={moves}></History>
+    </Stack>
   );
 };
 
