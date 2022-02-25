@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
 import Board from "./Board";
-import { Paper, Button, Stack, InputLabel } from "@mui/material";
+import History from "./History";
+import { Paper, Button, Stack } from "@mui/material";
 
 const calculateWinner = (squares) => {
   const lines = [
@@ -13,7 +14,6 @@ const calculateWinner = (squares) => {
     [0, 4, 8],
     [2, 4, 6],
   ];
-
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
@@ -81,10 +81,7 @@ const Game = (props) => {
     <Paper>
       <Stack spacing={2} direction="row">
         <Board squares={currentHist.squares} onClick={(i) => handleClick(i)} />
-        <Stack spacing={0.5} direction="column">
-          <InputLabel>{status}</InputLabel>
-          {moves}
-        </Stack>
+        <History status={status} moves={moves}></History>
       </Stack>
     </Paper>
   );

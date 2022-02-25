@@ -4,28 +4,40 @@ import { Stack } from "@mui/material";
 
 const Board = (props) => {
   const renderSquare = (i) => {
-    return <Square value={props.squares[i]} onClick={() => props.onClick(i)} />;
+    return (
+      <Square
+        key={i}
+        value={props.squares[i]}
+        onClick={() => props.onClick(i)}
+      />
+    );
   };
 
-  return (
-    <Stack>
-      <Stack direction="row">
-        {renderSquare(0)}
-        {renderSquare(1)}
-        {renderSquare(2)}
+  const renderRow = (i, squares) => {
+    return (
+      <Stack key={i} direction="row">
+        {squares}
       </Stack>
-      <Stack direction="row">
-        {renderSquare(3)}
-        {renderSquare(4)}
-        {renderSquare(5)}
-      </Stack>
-      <Stack direction="row">
-        {renderSquare(6)}
-        {renderSquare(7)}
-        {renderSquare(8)}
-      </Stack>
-    </Stack>
-  );
+    );
+  };
+
+  const renderBoard = (numberOfSquares) => {
+    const squareRootOfSquares = Math.pow(numberOfSquares, 1 / 2);
+    let board = [];
+    let squaresPerRow = [];
+    for (let i = 0; i < numberOfSquares; i++) {
+      squaresPerRow.push(renderSquare(i));
+      if (squaresPerRow.length === squareRootOfSquares) {
+        board.push(renderRow(i, squaresPerRow));
+        squaresPerRow = [];
+      }
+    }
+
+    console.log(board);
+    return board;
+  };
+
+  return <Stack>{renderBoard(9)}</Stack>;
 };
 
 export default React.memo(Board);
