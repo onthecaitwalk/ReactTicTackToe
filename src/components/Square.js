@@ -9,7 +9,7 @@ const Square = (props) => {
     [props]
   );
 
-  const variant = (i) => {
+  const variant = () => {
     if (!props.winningSquares) {
       return "outlined";
     }
@@ -20,7 +20,7 @@ const Square = (props) => {
 
   return (
     <Button
-      variant={variant(props.id)}
+      variant={variant()}
       sx={{ minHeight: 42, minWidth: 42, padding: 0 }}
       onClick={handleClick}
     >

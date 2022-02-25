@@ -4,6 +4,31 @@ import History from "./History";
 import { Button, Stack } from "@mui/material";
 import { calculateWinningSquares } from "../calculateWinningSquares";
 
+const calculateSquarePosition = (i) => {
+  switch (i) {
+    case 0:
+      return "(1, 1)";
+    case 1:
+      return "(2, 1)";
+    case 2:
+      return "(3, 1)";
+    case 3:
+      return "(1, 2)";
+    case 4:
+      return "(2, 2)";
+    case 5:
+      return "(3, 2)";
+    case 6:
+      return "(1, 3)";
+    case 7:
+      return "(2, 3)";
+    case 8:
+      return "(3, 3)";
+    default:
+      return null;
+  }
+};
+
 const Game = () => {
   const [history, setHistory] = useState([
     {
@@ -13,6 +38,7 @@ const Game = () => {
   const [stepNumber, setStepNumber] = useState(0);
   const [xIsNext, setXIsNext] = useState(true);
   const [selectedMove, setSelectedMove] = useState(-1);
+  const [squarePositions, setSquarePositions] = useState([]);
 
   const jumpTo = useCallback((step) => {
     setStepNumber(step);
@@ -30,6 +56,8 @@ const Game = () => {
         return;
       }
 
+      const position = squarePositions.slice(0, stepNumber);
+      position.push(calculateSquarePosition(i));
       squares[i] = xIsNext ? "X" : "O";
       setHistory(
         hist.concat([
@@ -41,14 +69,17 @@ const Game = () => {
       setStepNumber(hist.length);
       setXIsNext(!xIsNext);
       setSelectedMove(-1);
+      setSquarePositions(position);
     },
-    [history, stepNumber, xIsNext]
+    [history, stepNumber, xIsNext, squarePositions]
   );
 
   const currentHist = history[stepNumber];
   const winningSquares = calculateWinningSquares(currentHist.squares);
   const moves = history.map((step, move) => {
-    const desc = move ? "Go to move # " + move : "Go to game start";
+    const desc = move
+      ? "Go to move # " + move + " " + squarePositions[move - 1]
+      : "Go to game start";
     return (
       <Button
         key={move}

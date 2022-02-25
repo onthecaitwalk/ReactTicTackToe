@@ -26,12 +26,12 @@ const Board = (props) => {
   const renderBoard = (numberOfSquares) => {
     const squareRootOfSquares = Math.pow(numberOfSquares, 1 / 2);
     let board = [];
-    let squaresPerRow = [];
+    let squaresInRow = [];
     for (let i = 0; i < numberOfSquares; i++) {
-      squaresPerRow.push(renderSquare(i));
-      if (squaresPerRow.length === squareRootOfSquares) {
-        board.push(renderRow(i, squaresPerRow));
-        squaresPerRow = [];
+      squaresInRow.push(renderSquare(i));
+      if (squaresInRow.length === squareRootOfSquares) {
+        board.push(renderRow(i, squaresInRow));
+        squaresInRow = [];
       }
     }
     return board;
