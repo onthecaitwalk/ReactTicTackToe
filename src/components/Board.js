@@ -32,8 +32,6 @@ const Board = (props) => {
         squaresPerRow = [];
       }
     }
-
-    console.log(board);
     return board;
   };
 

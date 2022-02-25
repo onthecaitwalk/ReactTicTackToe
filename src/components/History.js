@@ -1,11 +1,20 @@
 import React from "react";
-import { Stack, InputLabel } from "@mui/material";
+import { Stack, InputLabel, Switch, FormControlLabel } from "@mui/material";
+import { useToggle } from "../hooks/toggle";
 
 const History = (props) => {
+  const [isAscending, setIsAscending] = useToggle(true);
+  const moves = props.moves.slice();
+
+  console.log(props.moves);
   return (
     <Stack spacing={0.5} direction="column">
       <InputLabel>{props.status}</InputLabel>
-      {props.moves}
+      <FormControlLabel
+        control={<Switch checked={isAscending} onClick={setIsAscending} />}
+        label={isAscending ? "Ascending" : "Descending"}
+      />
+      {isAscending ? moves : moves.reverse()}
     </Stack>
   );
 };
