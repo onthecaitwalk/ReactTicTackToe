@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
-import Board from "../board/Board";
-import "./Game.css";
+import Board from "./Board";
+import { Paper, Button, Stack, InputLabel } from "@mui/material";
 
 const calculateWinner = (squares) => {
   const lines = [
@@ -13,16 +13,19 @@ const calculateWinner = (squares) => {
     [0, 4, 8],
     [2, 4, 6],
   ];
+
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       return squares[a];
     }
   }
+
   return null;
 };
 
 const Game = (props) => {
+  console.log("rendering game...");
   const [history, setHistory] = useState([
     {
       squares: Array(9).fill(null),
@@ -65,9 +68,9 @@ const Game = (props) => {
   const moves = history.map((step, move) => {
     const desc = move ? "Go to move # " + move : "Go to game start";
     return (
-      <li key={move}>
-        <button onClick={() => jumpTo(move)}>{desc}</button>
-      </li>
+      <Button variant="outlined" onClick={() => jumpTo(move)}>
+        {desc}
+      </Button>
     );
   });
 
@@ -76,16 +79,16 @@ const Game = (props) => {
     : "Next player: " + (xIsNext ? "X" : "O");
 
   return (
-    <div className="game">
-      <div className="game-board">
+    <Paper>
+      <Stack spacing={2} direction="row">
         <Board squares={currentHist.squares} onClick={(i) => handleClick(i)} />
-      </div>
-      <div className="game-info">
-        <div>{status}</div>
-        <ol>{moves}</ol>
-      </div>
-    </div>
+        <Stack spacing={0.5} direction="column">
+          <InputLabel>{status}</InputLabel>
+          {moves}
+        </Stack>
+      </Stack>
+    </Paper>
   );
 };
 
-export default Game;
+export default React.memo(Game);

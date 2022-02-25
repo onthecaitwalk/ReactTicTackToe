@@ -1,6 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import Game from "./components/game/Game";
+import Game from "./components/Game";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
-ReactDOM.render(<Game />, document.getElementById("root"));
+const App = () => {
+  const theme = createTheme();
+  return (
+    <ThemeProvider theme={theme}>
+      <Game />
+    </ThemeProvider>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById("root"));

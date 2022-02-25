@@ -1,31 +1,32 @@
 import React from "react";
-import "./Board.css";
-import Square from "../square/Square";
+import Square from "./Square";
+import { Stack } from "@mui/material";
 
 const Board = (props) => {
+  console.log("rendering board...");
   const renderSquare = (i) => {
     return <Square value={props.squares[i]} onClick={() => props.onClick(i)} />;
   };
 
   return (
-    <div>
-      <div className="board-row">
+    <Stack>
+      <Stack direction="row">
         {renderSquare(0)}
         {renderSquare(1)}
         {renderSquare(2)}
-      </div>
-      <div className="board-row">
+      </Stack>
+      <Stack direction="row">
         {renderSquare(3)}
         {renderSquare(4)}
         {renderSquare(5)}
-      </div>
-      <div className="board-row">
+      </Stack>
+      <Stack direction="row">
         {renderSquare(6)}
         {renderSquare(7)}
         {renderSquare(8)}
-      </div>
-    </div>
+      </Stack>
+    </Stack>
   );
 };
 
-export default Board;
+export default React.memo(Board);
