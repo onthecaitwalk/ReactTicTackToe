@@ -60,9 +60,14 @@ const Game = () => {
     );
   });
 
-  const status = winningSquares
-    ? "Winner: " + (xIsNext ? "O" : "X")
-    : "Next player: " + (xIsNext ? "X" : "O");
+  const status = () => {
+    if (winningSquares) {
+      return "Winner: " + (xIsNext ? "O" : "X");
+    }
+    return stepNumber < 9
+      ? "Next player: " + (xIsNext ? "X" : "O")
+      : "It's a draw";
+  };
 
   return (
     <Stack spacing={2} direction="row">
@@ -71,7 +76,7 @@ const Game = () => {
         winningSquares={winningSquares}
         onClick={(i) => handleClick(i)}
       />
-      <History status={status} moves={moves}></History>
+      <History status={status()} moves={moves}></History>
     </Stack>
   );
 };
