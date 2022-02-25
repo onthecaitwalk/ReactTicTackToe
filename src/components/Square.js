@@ -2,7 +2,6 @@ import React from "react";
 import { Button, InputLabel } from "@mui/material";
 
 const Square = (props) => {
-  console.log("rendering square...");
   return (
     <Button
       variant="outlined"

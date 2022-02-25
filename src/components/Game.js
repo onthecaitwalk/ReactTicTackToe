@@ -25,7 +25,6 @@ const calculateWinner = (squares) => {
 };
 
 const Game = (props) => {
-  console.log("rendering game...");
   const [history, setHistory] = useState([
     {
       squares: Array(9).fill(null),
@@ -68,7 +67,7 @@ const Game = (props) => {
   const moves = history.map((step, move) => {
     const desc = move ? "Go to move # " + move : "Go to game start";
     return (
-      <Button variant="outlined" onClick={() => jumpTo(move)}>
+      <Button key={move} variant="outlined" onClick={() => jumpTo(move)}>
         {desc}
       </Button>
     );

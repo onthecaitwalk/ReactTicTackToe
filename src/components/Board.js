@@ -3,7 +3,6 @@ import Square from "./Square";
 import { Stack } from "@mui/material";
 
 const Board = (props) => {
-  console.log("rendering board...");
   const renderSquare = (i) => {
     return <Square value={props.squares[i]} onClick={() => props.onClick(i)} />;
   };
