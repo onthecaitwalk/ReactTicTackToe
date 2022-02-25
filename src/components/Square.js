@@ -9,9 +9,18 @@ const Square = (props) => {
     [props]
   );
 
+  const variant = (i) => {
+    if (!props.winningSquares) {
+      return "outlined";
+    }
+    return props.winningSquares.indexOf(props.id) > -1
+      ? "contained"
+      : "outlined";
+  };
+
   return (
     <Button
-      variant="outlined"
+      variant={variant(props.id)}
       sx={{ minHeight: 42, minWidth: 42, padding: 0 }}
       onClick={handleClick}
     >

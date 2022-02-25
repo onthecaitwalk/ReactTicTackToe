@@ -7,8 +7,10 @@ const Board = (props) => {
     return (
       <Square
         key={i}
+        id={i}
         value={props.squares[i]}
         onClick={() => props.onClick(i)}
+        winningSquares={props.winningSquares}
       />
     );
   };
